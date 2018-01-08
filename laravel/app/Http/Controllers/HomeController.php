@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Course;
+use App\Party;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        $course = Course::find($user->course_id);
+        $parties = Party::where('course_id', '=', $user->course_id)->get();
+ 
+        return view('home', compact('user', 'course', 'parties'));
     }
 }

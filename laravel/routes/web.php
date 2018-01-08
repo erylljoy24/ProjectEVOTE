@@ -29,10 +29,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 */
 Route::get('/student', 'StudentDashboardController@index');
 
-Route::get('/student/courses', 'StudentDashboardController@showCourses');
-
 Route::get('/student/courses/specified', 'StudentDashboardController@showSpecifiedCourse');
 
-Route::get('/student/courses/party', 'StudentDashboardController@showPartyPages');
+Route::get('/student/courses/party/{party}', 'StudentDashboardController@showPartyPages');
 
 
