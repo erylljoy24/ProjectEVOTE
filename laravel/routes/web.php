@@ -33,4 +33,11 @@ Route::get('/student/courses/specified', 'StudentDashboardController@showSpecifi
 
 Route::get('/student/courses/party/{party}', 'StudentDashboardController@showPartyPages');
 
+Route::post('/student/votes', 'StudentDashboardController@store');
+
+
+/*
+	this sections is for admin functionalities
+*/
+Route::get('/admin', 'AdminController@index');
 

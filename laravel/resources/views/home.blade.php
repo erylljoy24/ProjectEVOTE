@@ -20,6 +20,20 @@
                     @else
                         <p>You already voted!</p>
                     @endif
+
+
+                    <ul>
+                        @for($i = 0; $i < count($positions); $i++)
+                            <li>
+                                <h3 class="text-danger">{{ $positions[$i]->position_name }}</h3>
+                            </li>
+                            @foreach($getCandidatesPos as $allCands)
+                                @if($positions[$i]->id == $allCands->position_id)
+                                    <p class="lead">{{ $allCands->name }}: {{ $allCands->vote_count }}</p>
+                                @endif
+                            @endforeach
+                        @endfor
+                    </ul>
                 </div>
             </div>
         </div>

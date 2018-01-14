@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePartiesTable extends Migration
+class CreateAdminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePartiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parties', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->binary('party_image');
-            $table->string('party_name');
-            $table->text('propaganda');
-            $table->integer('course_id')->unsigned();
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePartiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parties');
+        Schema::dropIfExists('admins');
     }
 }
