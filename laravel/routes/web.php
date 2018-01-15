@@ -39,5 +39,6 @@ Route::post('/student/votes', 'StudentDashboardController@store');
 /*
 	this sections is for admin functionalities
 */
+Route::get('/admin/login', 'AdminLoginController@showLogin');
+Route::post('/admin/login', 'AdminLoginController@login');
 Route::get('/admin', 'AdminController@index');
-
