@@ -42,3 +42,10 @@ Route::post('/student/votes', 'StudentDashboardController@store');
 Route::get('/admin/login', 'AdminLoginController@showLogin');
 Route::post('/admin/login', 'AdminLoginController@login');
 Route::get('/admin', 'AdminController@index');
+
+// posting candidates
+Route::post('/admin', 'AdminController@store');
+// posting parties
+Route::post('/admin', 'AdminController@storeParty');
+// text burst winners
+Route::get('/admin/send', 'AdminController@sendBurstSms');

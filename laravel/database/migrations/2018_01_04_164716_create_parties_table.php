@@ -15,7 +15,7 @@ class CreatePartiesTable extends Migration
     {
         Schema::create('parties', function (Blueprint $table) {
             $table->increments('id');
-            $table->binary('party_image');
+            $table->binary('party_image')->nullable();
             $table->string('party_name');
             $table->text('propaganda');
             $table->integer('course_id')->unsigned();

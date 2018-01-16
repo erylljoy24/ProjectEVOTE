@@ -11,52 +11,47 @@
 <!-- CANDIDATE START -->                    
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <i class="fa fa-user"></i> Add Candidate
+                            
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <i class="fa fa-user"></i> Add Candidate
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    {{-- <button class="btn btn-danger">Announce Winners</button> --}}
+                                    <a href="/admin/send" class="btn btn-primary">Send SMS</a>
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="panel-body">
                             <div class="row">
     <!-- ADD CANDIDATE START -->                                   
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form method="POST" action="/admin">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" placeholder="Candidates First Name">
+                                            <input class="form-control" name="first_name" placeholder="Candidates First Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" placeholder="Candidates Last Name">
+                                            <input class="form-control" name="last_name" placeholder="Candidates Last Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input class="form-control" placeholder="Candidates Middle Name">
+                                            <input class="form-control" name="middle_name" placeholder="Candidates Middle Name">
                                         </div>
-                                        <div class="form-group col-lg-12">
-                                            <div class="col-lg-3">
-                                                <label>Birth Date</label>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <input type="number" class="form-control" placeholder="Year">
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <input type="number" class="form-control" placeholder="Month">
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <input type="number" class="form-control" placeholder="Day">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label><i class="fa fa-camera-retro"></i> Candidate Photo</label>
-                                            <input type="file">
-                                        </div>
+                                            <input type="file" name="profile_image">
+                                        </div> --}}
                                         <div class="col-xs-12">
                                             <div class="form-group col-xs-6">
                                                 <label>Course</label>
-                                                <select class="form-control">
-                                                    <option>Education</option>
-                                                    <option>Civil Engineering</option>
-                                                    <option>Businees Administration</option>
-                                                    <option>Information Technology Education</option>
-                                                    <option>Accountancy</option>
+                                                <select name="courses" class="form-control">
+                                                    @foreach($courses as $course)
+                                                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group col-xs-6">
@@ -73,22 +68,19 @@
                                         <div class="col-xs-12">
                                             <div class="form-group col-xs-6">
                                                 <label>Position to Run</label>
-                                                <select class="form-control">
-                                                    <option>President</option>
-                                                    <option>Vice-President</option>
-                                                    <option>Secretary</option>
-                                                    <option>Muse</option>
-                                                    <option>Course Rep.</option>
+                                                <select name="position" class="form-control">
+
+                                                    @foreach($positions as $position)
+                                                        <option value="{{ $position->id }}">{{ $position->position_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group col-xs-6">
                                                 <label>Party/Group</label>
-                                                <select class="form-control">
-                                                    <option>Party Party!</option>
-                                                    <option>Anak Pawis</option>
-                                                    <option>Walang Forever</option>
-                                                    <option>Elite Party</option>
-                                                    <option>Indepent</option>
+                                                <select name="party" class="form-control">
+                                                    @foreach($parties as $party)
+                                                        <option value="{{ $party->id }}">{{ $party->party_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -101,25 +93,25 @@
 
     <!-- LIST CANDIDATE START --> 
                                 <div class="col-lg-6">
-                                    <h1>List of Candidates <i class="fa fa-th-list"></i></h1>
+                                    
                                     <form role="form">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
+                                                List of Candidates
                                             </div>
                                             <!-- /.panel-heading -->
                                             <div class="panel-body">
-                                                <div class="form-group input-group">
+                                                {{-- <div class="form-group input-group">
                                                     <input type="text" class="form-control" placeholder="Search Candidate">
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
                                                         </button>
                                                     </span>
-                                                </div>
+                                                </div> --}}
                                                 <div class="table-responsive table-bordered">
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th>#</th>
                                                                 <th>Name</th>
                                                                 <th>Position to Run</th>
                                                                 <th>Party</th>
@@ -127,75 +119,60 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>Mark Otto</td>
-                                                                <td>President</td>
-                                                                <td>Independent</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>Jacob Thornthon</td>
-                                                                <td>President</td>
-                                                                <td>Party Party</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <td>Larry Bird</td>
-                                                                <td>Secretary</td>
-                                                                <td>Elite Party</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
+
+                                                            @foreach($getCandidatesPos as $cands)
+                                                                <tr>
+                                                                    <td>{{ $cands->name }}</td>
+                                                                    <td>{{ $cands->position_name }}</td>
+                                                                    <td>{{ $cands->party_name }}</td>
+                                                                    <td><a><i class="fa fa-eye"></i></a></td>
+                                                                    <td><a><i class="fa fa-pencil"></i></a></td>
+                                                                    <td><a><i class="fa fa-times"></i></a></td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <!-- /.table-responsive -->
                                             </div>
-                                            <!-- /.panel-body -->
                                         </div>
                                     </form>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
-    <!-- LIST CANDIDATE END --> 
                             </div>
-                            <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
-<!-- CANDIDATE END -->
 
-
-<!-- PARTY START -->
                     <div class="panel panel-warning">
                         <div class="panel-heading">
                             <i class="fa fa-group"></i> Add Party
                         </div>
                         <div class="panel-body">
                             <div class="row">
-    <!-- ADD PARTY START -->
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" method="POST" action="/admin">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Party Name</label>
-                                            <input class="form-control" placeholder="Party Name">
+                                            <input class="form-control" name="party_name" placeholder="Party Name">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label><i class="fa fa-camera-retro"></i> Party Photo</label>
                                             <input type="file">
-                                        </div>
+                                        </div> --}}
+
                                         <div class="form-group">
                                             <label>Party Motto</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" name="party_motto" rows="3"></textarea>
                                         </div>
+
+                                        <div class="form-group">
+                                                <label>Position to Run</label>
+                                                <select name="course" class="form-control">
+
+                                                    @foreach($courses as $course)
+                                                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-warning">Reset</button>
                                     </form>
@@ -205,76 +182,49 @@
 
     <!-- LIST PARTY START -->
                                 <div class="col-lg-6">
-                                    <h1>List of Party <i class="fa fa-th-list"></i></h1>
                                     <form role="form">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
+                                                List of Party
                                             </div>
                                             <!-- /.panel-heading -->
                                             <div class="panel-body">
-                                                <div class="form-group input-group">
+                                                {{-- <div class="form-group input-group">
                                                     <input type="text" class="form-control" placeholder="Search Party">
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
                                                         </button>
                                                     </span>
-                                                </div>
+                                                </div> --}}
                                                 <div class="table-responsive table-bordered">
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Party Name</th>
+                                                                <th>Party Course</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>Party Party!</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>Anak Pawis</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <td>Elite Party</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
+                                                            @for($i = 0; $i < count($partyWithCourse); $i++)
+                                                                <tr>
+                                                                    <td>{{ $i+1 }}</td>
+                                                                    <td>{{ $partyWithCourse[$i]->party_name }}</td>
+                                                                    <td>{{ $partyWithCourse[$i]->course_name }}</td>
+                                                                </tr>
+                                                            @endfor
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <!-- /.table-responsive -->
                                             </div>
-                                            <!-- /.panel-body -->
                                         </div>
                                     </form>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
-    <!-- LIST PARTY END -->
                             </div>
-                            <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
-<!-- PARTY END -->
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /#page-wrapper -->
-
     </div>
-    </div>
-    <!-- /#wrapper -->
 @endsection
