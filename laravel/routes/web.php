@@ -36,6 +36,10 @@ Route::get('/student/courses/party/{party}', 'StudentDashboardController@showPar
 Route::post('/student/votes', 'StudentDashboardController@store');
 
 
+
+
+
+
 /*
 	this sections is for admin functionalities
 */
