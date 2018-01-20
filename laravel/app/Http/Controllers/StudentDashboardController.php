@@ -8,6 +8,7 @@ use App\User;
 use App\Party;
 use App\Candidate;
 use App\Position;
+use App\Course;
 use Illuminate\Support\Facades\Input;
 
 class StudentDashboardController extends Controller
@@ -56,12 +57,21 @@ class StudentDashboardController extends Controller
             {
                 \DB::table('candidates')
                     ->where('id', $cands->id)
-                    ->update([
-                        'vote_count' => $cands->vote_count+1,
+                    ->update(['vote_count' => $cands->vote_count+1,
                 ]);
             }
             
         }
         return redirect('/home');
+    }
+
+
+    public function showMainData()
+    {
+        $user = Auth::user();   
+        $getCandidatesPos = \DB::table('positions')
+                            ->join('candidates', 'positions.id', '=', 'candidates.position_id')
+                            ->where('course_id', '=', $user->course_id)->orderBy('candidates.position_id')->get();   
+        return $getCandidatesPos;
     }
 }

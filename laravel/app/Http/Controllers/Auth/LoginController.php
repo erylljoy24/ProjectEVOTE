@@ -45,7 +45,8 @@ class LoginController extends Controller
 
         $this->validateLogin($request);
 
-        if ($this->attemptLogin($request)) {
+        if ($this->attemptLogin($request))
+        {
             $user = $this->guard()->user();
             $user->generateToken();
 

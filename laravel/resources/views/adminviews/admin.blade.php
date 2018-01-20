@@ -27,7 +27,7 @@
                             <div class="row">
     <!-- ADD CANDIDATE START -->                                   
                                 <div class="col-lg-6">
-                                    <form method="POST" action="/admin">
+                                    <form method="POST" action="/admin/candidates">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>First Name</label>

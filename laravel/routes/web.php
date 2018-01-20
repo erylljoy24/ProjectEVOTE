@@ -22,34 +22,26 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['prefix' => 'student'], function(){
+	Route::get('/', 'StudentDashboardController@index');
+	Route::get('/courses/specified', 'StudentDashboardController@showSpecifiedCourse');
+	Route::get('/courses/party/{party}', 'StudentDashboardController@showPartyPages');
+	Route::post('/votes', 'StudentDashboardController@store');
+});
 
+Route::group(['prefix' => 'api'], function(){
+	Route::get('/get/allPosition', 'StudentDashboardController@showMainData');
+});
 
-/*
-	this sections is for student voting transaction pages
-*/
-Route::get('/student', 'StudentDashboardController@index');
+Route::group(['prefix' => 'admin'], function(){
+	Route::get('/login', 'AdminLoginController@showLogin');
+	Route::post('/login', 'AdminLoginController@login');
+	Route::get('/', 'AdminController@index');
 
-Route::get('/student/courses/specified', 'StudentDashboardController@showSpecifiedCourse');
-
-Route::get('/student/courses/party/{party}', 'StudentDashboardController@showPartyPages');
-
-Route::post('/student/votes', 'StudentDashboardController@store');
-
-
-
-
-
-
-/*
-	this sections is for admin functionalities
-*/
-Route::get('/admin/login', 'AdminLoginController@showLogin');
-Route::post('/admin/login', 'AdminLoginController@login');
-Route::get('/admin', 'AdminController@index');
-
-// posting candidates
-Route::post('/admin', 'AdminController@store');
-// posting parties
-Route::post('/admin', 'AdminController@storeParty');
-// text burst winners
-Route::get('/admin/send', 'AdminController@sendBurstSms');
+	// posting candidates
+	Route::post('/candidates', 'AdminController@store');
+	// posting parties
+	Route::post('/', 'AdminController@storeParty');
+	// text burst winners
+	Route::get('/send', 'AdminController@sendBurstSms');
+});

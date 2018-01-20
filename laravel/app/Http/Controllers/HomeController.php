@@ -32,11 +32,9 @@ class HomeController extends Controller
         $positions = Position::all();
         $course = Course::find($user->course_id);
         $parties = Party::where('course_id', '=', $user->course_id)->get();
-
-        $getCandidatesPos = \DB::table('positions')
-                            ->join('candidates', 'positions.id', '=', 'candidates.position_id')
-                            ->where('course_id', '=', $user->course_id)->orderBy('candidates.position_id')->get();
- 
+        $getCandidatesPos = \DB::table('candidates')
+                            ->join('positions', 'positions.id', '=', 'candidates.position_id')
+                            ->join('parties', 'candidates.party_id', '=', 'parties.id')->get();
         return view('home', compact('user', 'course', 'parties', 'positions', 'getCandidatesPos'));
     }
 }

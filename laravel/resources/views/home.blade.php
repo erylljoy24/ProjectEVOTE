@@ -22,17 +22,51 @@
                     @endif
 
 
+                    <div class="table-responsive table-bordered">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position to Run</th>
+                                    <th>Party</th>
+                                    <th>Vote Counts</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                {{-- <li>
+                                    <h3 class="text-danger"></h3> <p class="lead">: </p>
+                                </li> --}}
+                                @for($i = 0; $i < count($positions); $i++)
+                                    
+                                    @foreach($getCandidatesPos as $allCands)
+                                        @if($positions[$i]->id == $allCands->position_id)
+                                            <tr>
+                                                <td>{{ $allCands->name }}</td>
+                                                <td>{{ $positions[$i]->position_name }}</td>
+                                                <td>{{ $allCands->party_name }}</td>
+                                                <td>{{ $allCands->vote_count }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endfor
+
+
+                             {{--    @foreach($getCandidatesPos as $cands)
+                                    <tr>
+                                        <td>{{ $cands->name }}</td>
+                                        <td>{{ $cands->position_name }}</td>
+                                        <td>{{ $cands->party_name }}</td>
+                                    </tr>
+                                @endforeach --}}
+                            </tbody>
+                        </table>
+                    </div>
+
                     <ul>
-                        @for($i = 0; $i < count($positions); $i++)
-                            <li>
-                                <h3 class="text-danger">{{ $positions[$i]->position_name }}</h3>
-                            </li>
-                            @foreach($getCandidatesPos as $allCands)
-                                @if($positions[$i]->id == $allCands->position_id)
-                                    <p class="lead">{{ $allCands->name }}: {{ $allCands->vote_count }}</p>
-                                @endif
-                            @endforeach
-                        @endfor
+                        
                     </ul>
                 </div>
             </div>

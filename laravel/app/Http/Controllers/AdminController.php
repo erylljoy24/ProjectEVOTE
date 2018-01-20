@@ -39,6 +39,7 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $post = new Candidate;
         $name = $request->first_name .' '. $request->last_name . ' ' . $request->middle_name;
         $post->name = $name;
