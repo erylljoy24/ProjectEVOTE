@@ -38,3 +38,5 @@ class HomeController extends Controller
         return view('home', compact('user', 'course', 'parties', 'positions', 'getCandidatesPos'));
     }
 }
+
+

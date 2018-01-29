@@ -33,7 +33,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Admin') }}
+                        Admin
                     </a>
                 </div>
             </div>

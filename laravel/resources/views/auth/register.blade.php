@@ -25,18 +25,32 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('student_id') ? ' has-error' : '' }}">
+                            <label for="student_id" class="col-md-4 control-label">Student ID</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="student_id" class="form-control" name="student_id" value="{{ old('student_id') }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('student_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('student_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('contact_number') ? ' has-error' : '' }}">
+                            <label for="contact_number" class="col-md-4 control-label">Contact Number</label>
+                            <div class="col-md-6">
+                                <input id="contact_number" class="form-control" name="contact_number" value="{{ old('contact_number') }}" required>
+
+                                @if ($errors->has('contact_number'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('contact_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

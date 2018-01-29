@@ -10,8 +10,8 @@
       @foreach($getCandidatesPos as $candidate)
         <div class="col-md-4 text-center">
           <img class="img-thumbnail" src="{{ asset('image/download.png') }}">
-          <h3 style="margin-top: 0px; padding-bottom: 0px;">{{ $candidate->name }}</h3>
-          <p><a class="btn btn-secondary" href="#" role="button">{{ $candidate->position_name }} &raquo;</a></p>
+          <a href="/student/courses/candidate/{{ $candidate->id }}"><h3 style="margin-top: 0px; padding-bottom: 0px;">{{ $candidate->name }}</h3></a>
+          <p>{{ $candidate->position_name }}</p>
         </div>
       @endforeach
       

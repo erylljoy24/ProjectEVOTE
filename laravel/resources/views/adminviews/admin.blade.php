@@ -26,8 +26,8 @@
                         <div class="panel-body">
                             <div class="row">
     <!-- ADD CANDIDATE START -->                                   
-                                <div class="col-lg-6">
-                                    <form method="POST" action="/admin/candidates">
+                                <div class="col-lg-4">
+                                    <form method="POST" action="/admin/candidates" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>First Name</label>
@@ -41,10 +41,10 @@
                                             <label>Middle Name</label>
                                             <input class="form-control" name="middle_name" placeholder="Candidates Middle Name">
                                         </div>
-                                        {{-- <div class="form-group">
+                                        <div class="form-group">
                                             <label><i class="fa fa-camera-retro"></i> Candidate Photo</label>
-                                            <input type="file" name="profile_image">
-                                        </div> --}}
+                                            <input type="file" name="image">
+                                        </div>
                                         <div class="col-xs-12">
                                             <div class="form-group col-xs-6">
                                                 <label>Course</label>
@@ -92,7 +92,7 @@
     <!-- ADD CANDIDATE END -->
 
     <!-- LIST CANDIDATE START --> 
-                                <div class="col-lg-6">
+                                <div class="col-lg-8">
                                     
                                     <form role="form">
                                         <div class="panel panel-default">
@@ -112,6 +112,7 @@
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
+                                                                <th></th>
                                                                 <th>Name</th>
                                                                 <th>Position to Run</th>
                                                                 <th>Party</th>
@@ -122,10 +123,15 @@
 
                                                             @foreach($getCandidatesPos as $cands)
                                                                 <tr>
+                                                                    <td><img src="{{ asset('storage/' .'profilepics'. $cands->image) }}"></td>
                                                                     <td>{{ $cands->name }}</td>
                                                                     <td>{{ $cands->position_name }}</td>
                                                                     <td>{{ $cands->party_name }}</td>
-                                                                    <td><a><i class="fa fa-eye"></i></a></td>
+                                                                    <td>
+                                                                        <a class="btn btn-danger" href="/admin/delete/{{ $cands->name }}">
+                                                                            delete
+                                                                        </a>
+                                                                    </td>
                                                                     <td><a><i class="fa fa-pencil"></i></a></td>
                                                                     <td><a><i class="fa fa-times"></i></a></td>
                                                                 </tr>

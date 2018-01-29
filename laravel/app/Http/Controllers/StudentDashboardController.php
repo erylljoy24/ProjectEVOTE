@@ -42,11 +42,22 @@ class StudentDashboardController extends Controller
     {
         $party = Party::find($id);
         $candidates = Candidate::where('party_id', '=', $party->id)->get();
-        $getCandidatesPos = \DB::table('candidates')
-                            ->join('positions', 'candidates.position_id', '=', 'positions.id')
+        $getCandidatesPos = \DB::table('positions')
+                            ->join('candidates', 'candidates.position_id', '=', 'positions.id')
                             ->where('party_id', '=', $party->id)->get();
+        // dd($getCandidatesPos);
         return view('studentviews.maincontent.partypage', compact('party', 'getCandidatesPos'));
     }
+
+    public function showCandidate($id)
+    {
+        
+        $candidate = Candidate::find($id);
+        // dd($candidate);
+        return view('studentviews.maincontent.candidate', compact('candidate'));
+    }
+
+
     public function store(Request $req)
     {
         $sampleArray = Input::get('candidates');
@@ -64,7 +75,6 @@ class StudentDashboardController extends Controller
         }
         return redirect('/home');
     }
-
 
     public function showMainData()
     {
