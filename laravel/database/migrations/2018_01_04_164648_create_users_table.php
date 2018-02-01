@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('student_id');
             $table->string('password');
             $table->string('contact_number');
+            $table->string('birthday')->nullable();
+            $table->string('age')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('year')->nullable();
+            $table->string('address')->nullable();
             $table->string('api_token', 60)->unique()->nullable();
             $table->string('phone_number')->nullable();
             $table->boolean('hasvoted')->default(false);

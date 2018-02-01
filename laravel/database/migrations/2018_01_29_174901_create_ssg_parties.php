@@ -15,6 +15,8 @@ class CreateSsgParties extends Migration
     {
         Schema::create('ssg_parties', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('party_name');
+            $table->text('propaganda');
             $table->timestamps();
         });
     }

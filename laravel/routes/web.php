@@ -30,6 +30,14 @@ Route::group(['prefix' => 'student'], function(){
 	Route::get('/courses/candidate/{candidate}', 'StudentDashboardController@showCandidate');
 	
 	Route::post('/votes', 'StudentDashboardController@store');
+
+	Route::get('/votenew', function(){
+		return view('studentviews.maincontent.vote');
+	});
+
+	Route::get('/view/candidates', function(){
+		return view('studentviews.maincontent.ViewCandidate');
+	});
 });
 
 

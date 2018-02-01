@@ -16,10 +16,10 @@
                                 <div class="col-md-10">
                                     <i class="fa fa-user"></i> Add Candidate
                                 </div>
-                                <div class="col-md-2 float-right">
-                                    {{-- <button class="btn btn-danger">Announce Winners</button> --}}
+                                {{-- <div class="col-md-2 float-right">
+                                    <button class="btn btn-danger">Announce Winners</button>
                                     <a href="/admin/send" class="btn btn-primary">Send SMS</a>
-                                </div>
+                                </div> --}}
                             </div>
                             
                         </div>
