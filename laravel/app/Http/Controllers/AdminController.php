@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function index()
     {
         $courses = Course::all();
-        $positions = Position::all();
+        $positions = Position::paginate(1);
         $parties = Party::all();
         $getCandidatesPos = \DB::table('candidates')
                             ->join('positions', 'positions.id', '=', 'candidates.position_id')
@@ -37,7 +37,7 @@ class AdminController extends Controller
         // dd($getCandidatesPos);
         $partyWithCourse = \DB::table('parties')
                             ->join('courses', 'courses.id', '=', 'parties.course_id')->get();
-    	return view('adminviews.admin', compact('courses', 'positions', 
+    	return view('adminviews.admin_sub_views.index', compact('courses', 'positions', 
             'parties', 'getCandidatesPos', 'partyWithCourse'));
     }
 

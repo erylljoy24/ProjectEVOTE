@@ -114,8 +114,36 @@
                     <h1 class="page-header">Vote now "student's name"</h1>
                 </div>
             </div>
+            <form method="POST" action="/student/votes">
+                {{ csrf_field() }}
+                <ul class="list-unstyled">
+                    @for($i = 0; $i < count($positions); $i++)
+                        <li>
+                            {{ $positions[$i]->position_name }} 
+                        </li>
+                        @foreach($getCandidatesPos as $allCands)
+                            @if($positions[$i]->id == $allCands->position_id)
+                                <input type="checkbox" name="candidates[]" value="{{ $allCands->id }}">{{ $allCands->name }}
+                                <br><br>
+                            @endif
+                        @endforeach
+                    @endfor
+                
+                    {{-- @foreach($positions as $position)
+                        
+                        <select class="form-control">
+                            <option>Reginald</option>
+                            <option>Lebron James</option>
+                        </select>
+                    @endforeach --}}
+                </ul>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
             <!-- /.row -->
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -380,7 +408,7 @@
                 <div class="input-group">
                     University of South Eastern Philippines
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- /#page-wrapper -->
 

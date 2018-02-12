@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'student'], function(){
-	Route::get('/', 'StudentDashboardController@index');
+	Route::get('/votenew', 'StudentDashboardController@index');
 	Route::get('/courses/specified', 'StudentDashboardController@showSpecifiedCourse');
 	Route::get('/courses/party/{party}', 'StudentDashboardController@showPartyPages');
 
@@ -31,13 +31,17 @@ Route::group(['prefix' => 'student'], function(){
 	
 	Route::post('/votes', 'StudentDashboardController@store');
 
-	Route::get('/votenew', function(){
-		return view('studentviews.maincontent.vote');
-	});
+	// Route::get('/votenew', function(){
+	// 	return view('studentviews.maincontent.vote');
+	// });
 
 	Route::get('/view/candidates', function(){
 		return view('studentviews.maincontent.ViewCandidate');
 	});
+
+	Route::get('/view/parties', 'HomeController@displayProgramParties');
+
+	
 });
 
 
@@ -79,4 +83,27 @@ Route::group(['prefix' => 'admin'], function(){
 	// text burst winners
 	Route::get('/send', 'AdminController@sendBurstSms');
 	Route::get('/delete/{candidate}', 'AdminController@deleteCandidate');
+
+
+
+
+
+
+
+
+	Route::get('/add', function(){
+		return view('adminviews.admin_sub_views.AddCandidate');
+	});
+	Route::get('/view', function(){
+		return view('adminviews.admin_sub_views.ViewCandidate');
+	});
+
+	// Parties
+	Route::get('/add/parties', function(){
+		return view('adminviews.admin_sub_views.AddParty');
+	});
+	Route::get('/view/parties', function(){
+		return view('adminviews.admin_sub_views.ViewParty');
+	});
+
 });

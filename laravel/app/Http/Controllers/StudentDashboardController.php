@@ -32,7 +32,7 @@ class StudentDashboardController extends Controller
                             ->join('candidates', 'positions.id', '=', 'candidates.position_id')
                             ->where('course_id', '=', $user->course_id)->orderBy('candidates.position_id')->get();
         
-    	return view('studentviews.maincontent.dashboard', compact('positions','getCandidatesPos'));
+    	return view('studentviews.maincontent.vote', compact('positions','getCandidatesPos'));
     }
     public function showSpecifiedCourse()
     {

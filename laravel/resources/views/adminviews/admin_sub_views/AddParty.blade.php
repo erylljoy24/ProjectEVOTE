@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ config('app.name', 'Evote') }}</title>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
@@ -82,12 +82,29 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/home"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/student/view/parties">
-                                <i class="fa fa-group"></i> View Party
-                            </a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Candidate<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/add">Add Candidates</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/view">View Candidates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-group"></i> Party<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/add/parties">Add Party</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/view/parties">View Party</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -99,7 +116,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">List of Party</h1>
+                    <h1 class="page-header">Student</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -107,53 +124,40 @@
             <div class="row">
                 <div class="col-lg-12">
 
-<!-- PARTY START -->                    
-                    <div class="panel-body">
+<!-- PARTY START -->
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <i class="fa fa-group"></i> Add Party
+                        </div>
+                        <div class="panel-body">
                             <div class="row">
-
-<!-- LIST PARTY START -->
-                                <div class="col-lg-6">
-                                    
+    <!-- ADD PARTY START -->
+                                <div class="col-lg-12">
                                     <form role="form">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                            </div>
-                                            <!-- /.panel-heading -->
-                                            <div class="panel-body">
-                                                <div class="table-responsive table-bordered">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>Party Name</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach($parties as $party)
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td><a href="/student/courses/party/{{ $party->id }}">{{ $party->party_name }}</a></td>
-                                                                    <td><a><i class="fa fa-eye"></i></a></td>
-                                                                    <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                    <td><a><i class="fa fa-times"></i></a></td>
-                                                                </tr>
-                                                            @endforeach
-                                                            
-                                                            
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <!-- /.table-responsive -->
-                                            </div>
-                                            <!-- /.panel-body -->
+                                        <div class="form-group">
+                                            <label>Party Name</label>
+                                            <input class="form-control" placeholder="Party Name">
                                         </div>
+                                        <div class="form-group">
+                                            <label><i class="fa fa-camera-retro"></i> Party Photo</label>
+                                            <input type="file">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Party Motto</label>
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-warning">Reset</button>
                                     </form>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
-    <!-- LIST PARTY END -->
+                                <!-- /.col-lg-12 (nested) -->
+    <!-- ADD PARTY END -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
 <!-- PARTY END -->
 
 
@@ -167,11 +171,11 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/metisMenu.min.js')}}"></script>
+    <script src="{{asset('js/sb-admin-2.js')}}"></script>
 
 </body>
 

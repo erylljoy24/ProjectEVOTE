@@ -29,13 +29,23 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $positions = Position::all();
+        $positions = Position::paginate(1);
         $course = Course::find($user->course_id);
         $parties = Party::where('course_id', '=', $user->course_id)->get();
         $getCandidatesPos = \DB::table('candidates')
                             ->join('positions', 'positions.id', '=', 'candidates.position_id')
                             ->join('parties', 'candidates.party_id', '=', 'parties.id')->get();
-        return view('home', compact('user', 'course', 'parties', 'positions', 'getCandidatesPos'));
+        // dd($getCandidatesPos);
+        return view('studentviews.maincontent.index', compact('user', 'course', 'parties', 'positions', 'getCandidatesPos'));
+    }
+
+    public function displayProgramParties()
+    {
+        $user = Auth::user();
+        $course = Course::find($user->course_id);
+        $parties = Party::where('course_id', '=', $user->course_id)->get();
+
+        return view('studentviews.maincontent.ViewParty', compact('course', 'parties'));
     }
 }
 

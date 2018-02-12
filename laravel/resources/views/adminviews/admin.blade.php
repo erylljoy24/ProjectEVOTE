@@ -134,12 +134,17 @@
                                                                     </td>
                                                                     <td><a><i class="fa fa-pencil"></i></a></td>
                                                                     <td><a><i class="fa fa-times"></i></a></td>
+
                                                                 </tr>
                                                             @endforeach
+                                                            
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </div>
+                                                <nav aria-label="Page navigation example" class="text-center">
+                                                  {{ $getCandidatesPos->links() }}
+                                                </nav>
+                                                </div>
                                         </div>
                                     </form>
                                 </div>

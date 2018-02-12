@@ -9,8 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ config('app.name', 'Evote') }}</title>
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -19,13 +20,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sb-admin-2.css') }}">
     <link href="{{ asset('css/custom-evote.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom-evote.css') }}">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -88,17 +82,29 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/home"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/student/view/candidates">
-                                <i class="fa fa-user fa-fw"></i> View Candidates
-                            </a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Candidate<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/add">Add Candidates</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/view">View Candidates</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="/student/view/parties">
-                                <i class="fa fa-group"></i> View Party
-                            </a>
+                            <a href="#"><i class="fa fa-group"></i> Party<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/add/parties">Add Party</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/view/parties">View Party</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -226,11 +232,11 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/metisMenu.min.js')}}"></script>
+    <script src="{{asset('js/sb-admin-2.js')}}"></script>
 
 </body>
 
