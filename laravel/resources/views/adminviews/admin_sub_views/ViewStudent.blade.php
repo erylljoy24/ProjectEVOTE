@@ -82,27 +82,27 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> Student<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="AddStudent.html">Add Students</a>
-                                </li>
-                                <li>
-                                    <a href="ViewStudent.html">View Students</a>
-                                </li>
-                            </ul>
+                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> Candidate<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="AddCandidate.html">Add Candidates</a>
+                                    <a href="/admin/add">Add Candidates</a>
                                 </li>
                                 <li>
-                                    <a href="ViewCandidate.html">View Candidates</a>
+                                    <a href="/admin/view">View Candidates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Add TCSC Candidate<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/add/tcscCand">Add Candidates</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/view/tcscCand">View Candidates</a>
                                 </li>
                             </ul>
                         </li>
@@ -110,10 +110,10 @@
                             <a href="#"><i class="fa fa-group"></i> Party<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="AddParty.html">Add Party</a>
+                                    <a href="/admin/add/parties">Add Party</a>
                                 </li>
                                 <li>
-                                    <a href="ViewParty.html">View Party</a>
+                                    <a href="/admin/view/parties">View Party</a>
                                 </li>
                             </ul>
                         </li>
@@ -152,7 +152,7 @@
                                             </div>
                                             <!-- /.panel-heading -->
                                             <div class="panel-body">
-                                                <div class="form-group input-group">
+                                                {{-- <div class="form-group input-group">
                                                     <input type="text" class="form-control" placeholder="Search Student">
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
@@ -181,7 +181,7 @@
                                                         </select>
                                                     </div>
                                                         <button type="submit" class="btn btn-primary">Submit</button>   
-                                                </form>
+                                                </form> --}}
 
                                                 <div class="panel-body">
                                                     <div class="table-responsive table-bordered">
@@ -196,33 +196,22 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>Mark Otto</td>
-                                                                    <td>President</td>
-                                                                    <td>Independent</td>
-                                                                    <td><a><i class="fa fa-eye"></i></a></td>
-                                                                    <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                    <td><a><i class="fa fa-times"></i></a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>2</td>
-                                                                    <td>Jacob Thornthon</td>
-                                                                    <td>President</td>
-                                                                    <td>Party Party</td>
-                                                                    <td><a><i class="fa fa-eye"></i></a></td>
-                                                                    <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                    <td><a><i class="fa fa-times"></i></a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>3</td>
-                                                                    <td>Larry Bird</td>
-                                                                    <td>Secretary</td>
-                                                                    <td>Elite Party</td>
-                                                                    <td><a><i class="fa fa-eye"></i></a></td>
-                                                                    <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                    <td><a><i class="fa fa-times"></i></a></td>
-                                                                </tr>
+                                                                @foreach($getCandidatesPos as $cands)
+                                                                    <tr>
+                                                                        <td><img src="{{ asset('storage/' .'profilepics'. $cands->image) }}"></td>
+                                                                        <td>{{ $cands->name }}</td>
+                                                                        <td>{{ $cands->position_name }}</td>
+                                                                        <td>{{ $cands->party_name }}</td>
+                                                                        <td>
+                                                                            <a class="btn btn-danger" href="/admin/delete/{{ $cands->name }}">
+                                                                                delete
+                                                                            </a>
+                                                                        </td>
+                                                                        <td><a><i class="fa fa-pencil"></i></a></td>
+                                                                        <td><a><i class="fa fa-times"></i></a></td>
+
+                                                                    </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>

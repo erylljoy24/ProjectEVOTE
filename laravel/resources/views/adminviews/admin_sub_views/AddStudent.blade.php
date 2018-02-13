@@ -82,27 +82,27 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> Student<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="AddStudent.html">Add Students</a>
-                                </li>
-                                <li>
-                                    <a href="ViewStudent.html">View Students</a>
-                                </li>
-                            </ul>
+                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> Candidate<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="AddCandidate.html">Add Candidates</a>
+                                    <a href="/admin/add">Add Candidates</a>
                                 </li>
                                 <li>
-                                    <a href="ViewCandidate.html">View Candidates</a>
+                                    <a href="/admin/view">View Candidates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Add TCSC Candidate<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/add/tcscCand">Add Candidates</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/view/tcscCand">View Candidates</a>
                                 </li>
                             </ul>
                         </li>
@@ -110,10 +110,10 @@
                             <a href="#"><i class="fa fa-group"></i> Party<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="AddParty.html">Add Party</a>
+                                    <a href="/admin/add/parties">Add Party</a>
                                 </li>
                                 <li>
-                                    <a href="ViewParty.html">View Party</a>
+                                    <a href="/admin/view/parties">View Party</a>
                                 </li>
                             </ul>
                         </li>
@@ -144,48 +144,35 @@
                             <div class="row">
     <!-- ADD STUDENT START -->                                   
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form method="POST" action="/admin/add/tcscCand/now" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" placeholder="Student First Name">
+                                            <input class="form-control" name="first_name" placeholder="Candidates First Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" placeholder="Student Last Name">
+                                            <input class="form-control" name="last_name" placeholder="Candidates Last Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input class="form-control" placeholder="Student Middle Name">
+                                            <input class="form-control" name="middle_name" placeholder="Candidates Middle Name">
                                         </div>
                                         <div class="form-group">
-                                            <label>Student ID</label>
-                                            <input class="form-control" placeholder="Student ID">
+                                            <label>Student #</label>
+                                            <input class="form-control" name="student_id" placeholder="Student #">
                                         </div>
                                         <div class="form-group">
-                                            <label>Student Contact #</label>
-                                            <input class="form-control" placeholder="Contact Number">
-                                        </div>
-                                        <div class="form-group">
-                                            <label><i class="fa fa-camera-retro"></i> Student Photo</label>
-                                            <input type="file">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" class="form-control" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Confirm Password</label>
-                                            <input type="password" class="form-control" placeholder="Confirm Password">
+                                            <label><i class="fa fa-camera-retro"></i> Candidate Photo</label>
+                                            <input type="file" name="image">
                                         </div>
                                         <div class="col-xs-12">
                                             <div class="form-group col-xs-6">
                                                 <label>Course</label>
-                                                <select class="form-control">
-                                                    <option>Education</option>
-                                                    <option>Civil Engineering</option>
-                                                    <option>Businees Administration</option>
-                                                    <option>Information Technology Education</option>
-                                                    <option>Accountancy</option>
+                                                <select name="courses" class="form-control">
+                                                    @foreach($courses as $course)
+                                                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group col-xs-6">
@@ -196,6 +183,25 @@
                                                     <option>3</option>
                                                     <option>4</option>
                                                     <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="form-group col-xs-6">
+                                                <label>Position to Run</label>
+                                                <select name="position" class="form-control">
+
+                                                    @foreach($positions as $position)
+                                                        <option value="{{ $position->id }}">{{ $position->position_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label>Party/Group</label>
+                                                <select name="party" class="form-control">
+                                                    @foreach($parties as $party)
+                                                        <option value="{{ $party->id }}">{{ $party->party_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

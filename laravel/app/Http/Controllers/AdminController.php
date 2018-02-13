@@ -8,6 +8,8 @@ use App\Party;
 use App\User;
 use App\Position;
 use App\Candidate;
+use App\Ssg_candidate;
+use App\Ssg_party;
 use Auth;
 use Image;
 use Illuminate\Support\Facades\Input;
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Input;
 class AdminController extends Controller
 {
 
-	/**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -37,8 +39,25 @@ class AdminController extends Controller
         // dd($getCandidatesPos);
         $partyWithCourse = \DB::table('parties')
                             ->join('courses', 'courses.id', '=', 'parties.course_id')->get();
-    	return view('adminviews.admin_sub_views.index', compact('courses', 'positions', 
+        return view('adminviews.admin_sub_views.index', compact('courses', 'positions', 
             'parties', 'getCandidatesPos', 'partyWithCourse'));
+    }
+
+    
+
+    /*
+    *   Adding Candidates Functions
+    */
+    public function displayAddCandidates()
+    {
+        $courses = Course::all();
+        $positions = Position::paginate(1);
+        $parties = Party::all();
+        $partyWithCourse = \DB::table('parties')
+                            ->join('courses', 'courses.id', '=', 'parties.course_id')->get();
+
+        return view('adminviews.admin_sub_views.AddCandidate', compact('courses', 'positions', 
+            'parties', 'partyWithCourse'));
     }
 
     public function store(Request $request)
@@ -48,18 +67,13 @@ class AdminController extends Controller
         $name = $request->first_name .' '. $request->last_name . ' ' . $request->middle_name;
         $post->name = $name;
 
-
-
         $image = $request->file('image');
         $filename  = time() . '.' . $image->getClientOriginalExtension();
 
         $path = public_path('storage\profilepics' . $filename);
 
-        // dd($path);
         Image::make($image->getRealPath())->resize(100, 100)->save($path);
         $post->image = $filename;
-
-
 
         $post->course_id = Input::get('courses');
         $post->party_id = $request->get('party');
@@ -68,7 +82,27 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
+    public function viewAllCandidates()
+    {
+        $getCandidatesPos = \DB::table('candidates')
+                            ->join('positions', 'positions.id', '=', 'candidates.position_id')
+                            ->join('parties', 'parties.id', '=', 'candidates.party_id')->paginate(5);
+        return view('adminviews.admin_sub_views.ViewCandidate', compact('getCandidatesPos'));
+    }
+    /*
+    *   end Adding Candidates Functions
+    */
 
+
+
+    /*
+    *   Adding Parties Functions
+    */
+    public function displayStoreParty()
+    {
+        $courses = Course::all();
+        return view('adminviews.admin_sub_views.AddParty', compact('courses'));
+    }
 
     public function storeParty(Request $request)
     {
@@ -79,6 +113,68 @@ class AdminController extends Controller
         $post->save();
         return redirect('/admin');
     }
+
+    public function displayAddProgramParty()
+    {
+        $parties = Party::all();
+        $partyWithCourse = \DB::table('parties')
+                            ->join('courses', 'courses.id', '=', 'parties.course_id')->get();
+        return view('adminviews.admin_sub_views.ViewParty', compact('parties', 'partyWithCourse'));
+    }
+    /*
+    *   end Adding Parties Functions
+    */
+
+
+
+    public function displayStoreTCSCCanidates()
+    {
+        $courses = Course::all();
+        $positions = Position::all();
+        $parties = Ssg_party::all();
+        return view('adminviews.admin_sub_views.AddStudent', compact('courses', 'positions', 'parties'));
+    }
+
+    public function storeTCSCCanidates(Request $request)
+    {
+        // dd($request);
+        $post = new Ssg_candidate;
+        $name = $request->first_name .' '. $request->last_name . ' ' . $request->middle_name;
+        $post->name = $name;
+        $post->student_id = $request->student_id;
+
+        $image = $request->file('image');
+        $filename  = time() . '.' . $image->getClientOriginalExtension();
+
+        $path = public_path('storage\profilepics' . $filename);
+
+        Image::make($image->getRealPath())->resize(100, 100)->save($path);
+        $post->image = $filename;
+
+        $post->course_id = $request->get('courses');
+        $post->ssg_party_id = $request->get('party');
+        $post->position_id = $request->get('position');
+        $post->save();
+        return redirect('/admin');
+    }
+
+    public function viewStoredTCSCCanidates()
+    {
+        $getCandidatesPos = \DB::table('ssg_candidates')
+                            ->join('positions', 'positions.id', '=', 'ssg_candidates.position_id')
+                            ->join('ssg_parties', 'ssg_parties.id', '=', 'ssg_candidates.ssg_party_id')->get();
+        // dd($getCandidatesPos);
+        return view('adminviews.admin_sub_views.ViewStudent', compact('getCandidatesPos'));
+    }
+    
+
+
+
+
+
+
+
+
 
     public function deleteCandidate($request)
     {

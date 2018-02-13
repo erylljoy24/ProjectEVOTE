@@ -133,19 +133,31 @@
                             <div class="row">
     <!-- ADD PARTY START -->
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form role="form" method="POST" action="/admin">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Party Name</label>
-                                            <input class="form-control" placeholder="Party Name">
+                                            <input class="form-control" name="party_name" placeholder="Party Name">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label><i class="fa fa-camera-retro"></i> Party Photo</label>
                                             <input type="file">
-                                        </div>
+                                        </div> --}}
+
                                         <div class="form-group">
                                             <label>Party Motto</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" name="party_motto" rows="3"></textarea>
                                         </div>
+
+                                        <div class="form-group">
+                                                <label>Position to Run</label>
+                                                <select name="course" class="form-control">
+
+                                                    @foreach($courses as $course)
+                                                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-warning">Reset</button>
                                     </form>

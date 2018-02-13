@@ -87,23 +87,18 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 
+	Route::get('/add', 'AdminController@displayAddCandidates');
 
-
-
-
-	Route::get('/add', function(){
-		return view('adminviews.admin_sub_views.AddCandidate');
-	});
-	Route::get('/view', function(){
-		return view('adminviews.admin_sub_views.ViewCandidate');
-	});
+	Route::get('/view', 'AdminController@viewAllCandidates');
 
 	// Parties
-	Route::get('/add/parties', function(){
-		return view('adminviews.admin_sub_views.AddParty');
-	});
-	Route::get('/view/parties', function(){
-		return view('adminviews.admin_sub_views.ViewParty');
-	});
+	Route::get('/add/parties', 'AdminController@displayStoreParty');
+	Route::get('/view/parties', 'AdminController@displayAddProgramParty');
+
+	// TCSC candidates
+	Route::get('/add/tcscCand', 'AdminController@displayStoreTCSCCanidates');
+	Route::get('/view/tcscCand', 'AdminController@viewStoredTCSCCanidates');
+	Route::post('/add/tcscCand/now', 'AdminController@storeTCSCCanidates');
+
 
 });

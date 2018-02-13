@@ -157,27 +157,14 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>Party Party!</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>Anak Pawis</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <td>Elite Party</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
+                                                            @for($i = 0; $i < count($partyWithCourse); $i++)
+                                                                <tr>
+                                                                    <td>{{ $i+1 }}</td>
+                                                                    <td>{{ $partyWithCourse[$i]->party_name }}</td>
+                                                                    <td>{{ $partyWithCourse[$i]->course_name }}</td>
+                                                                </tr>
+                                                            @endfor
+                                        
                                                         </tbody>
                                                     </table>
                                                 </div>

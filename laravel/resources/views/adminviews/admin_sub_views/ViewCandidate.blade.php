@@ -141,14 +141,14 @@
                                             </div>
                                             <!-- /.panel-heading -->
                                             <div class="panel-body">
-                                                <div class="form-group input-group">
+                                                {{-- <div class="form-group input-group">
                                                     <input type="text" class="form-control" placeholder="Search Candidate">
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
                                                         </button>
                                                     </span>
-                                                </div>
-                                                <form class="form-group col-lg-6">
+                                                </div> --}}
+                                                {{-- <form class="form-group col-lg-6">
                                                     <div class="form-group col-lg-12">
                                                         <label>Party</label>
                                                         <select class="form-control">
@@ -162,7 +162,7 @@
                                                     <div class="form-group col-xs-12">
                                                         <button type="submit" class="btn btn-primary">Submit</button>
                                                     </div>
-                                                </form>
+                                                </form> --}}
                                                 <div class="table-responsive table-bordered">
                                                     <table class="table">
                                                         <thead>
@@ -175,35 +175,27 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>Mark Otto</td>
-                                                                <td>President</td>
-                                                                <td>Independent</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>Jacob Thornthon</td>
-                                                                <td>President</td>
-                                                                <td>Party Party</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <td>Larry Bird</td>
-                                                                <td>Secretary</td>
-                                                                <td>Elite Party</td>
-                                                                <td><a><i class="fa fa-eye"></i></a></td>
-                                                                <td><a><i class="fa fa-pencil"></i></a></td>
-                                                                <td><a><i class="fa fa-times"></i></a></td>
-                                                            </tr>
+                                                            @foreach($getCandidatesPos as $cands)
+                                                                <tr>
+                                                                    <td><img src="{{ asset('storage/' .'profilepics'. $cands->image) }}"></td>
+                                                                    <td>{{ $cands->name }}</td>
+                                                                    <td>{{ $cands->position_name }}</td>
+                                                                    <td>{{ $cands->party_name }}</td>
+                                                                    <td>
+                                                                        <a class="btn btn-danger" href="/admin/delete/{{ $cands->name }}">
+                                                                            delete
+                                                                        </a>
+                                                                    </td>
+                                                                    <td><a><i class="fa fa-pencil"></i></a></td>
+                                                                    <td><a><i class="fa fa-times"></i></a></td>
+
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
+                                                    <nav aria-label="Page navigation example" class="text-center">
+                                                      {{ $getCandidatesPos->links() }}
+                                                    </nav>
                                                 </div>
                                                 <!-- /.table-responsive -->
                                             </div>

@@ -41,20 +41,26 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+        
+
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                        {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
@@ -74,6 +80,17 @@
                                 </li>
                                 <li>
                                     <a href="/admin/view">View Candidates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Add TCSC Candidate<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/add/tcscCand">Add Candidates</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/view/tcscCand">View Candidates</a>
                                 </li>
                             </ul>
                         </li>
@@ -119,7 +136,7 @@
                         </div>
                         <div class="panel-body">
                         <div class="form-group">
-                            <h2>TCSC</h2>
+                            <h2>Program</h2>
                         </div>
                             @for($i = 0; $i < count($positions); $i++)
                                 <div class="panel panel-default">
@@ -172,7 +189,7 @@
                               {{ $positions->links() }}
                             </nav>
                             <!-- /.panel -->
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <h2>Program</h2>
                                 <select class="form-control">
                                     <option>Information Technology</option>
@@ -235,11 +252,10 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <!-- /.table-responsive -->
                                 </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
+                            </div> --}}
+
+
                         </div>
                     </div>
                 </div>

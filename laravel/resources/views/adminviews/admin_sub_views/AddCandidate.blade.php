@@ -134,46 +134,31 @@
                             <div class="row">
     <!-- ADD STUDENT START -->                                   
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form method="POST" action="/admin/candidates" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" placeholder="Candidate First Name">
+                                            <input class="form-control" name="first_name" placeholder="Candidates First Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" placeholder="Candidate Last Name">
+                                            <input class="form-control" name="last_name" placeholder="Candidates Last Name">
                                         </div>
                                         <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input class="form-control" placeholder="Candidate Middle Name">
+                                            <input class="form-control" name="middle_name" placeholder="Candidates Middle Name">
                                         </div>
                                         <div class="form-group">
-                                            <label>Student ID</label>
-                                            <input class="form-control" placeholder="Candidate Student ID">
+                                            <label><i class="fa fa-camera-retro"></i> Candidate Photo</label>
+                                            <input type="file" name="image">
                                         </div>
-                                       <!--  <div class="form-group col-lg-12">
-                                            <div class="col-lg-3">
-                                                <label>Birth Date</label>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <input type="number" class="form-control" placeholder="Year">
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <input type="number" class="form-control" placeholder="Month">
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <input type="number" class="form-control" placeholder="Day">
-                                            </div>
-                                        </div> -->
                                         <div class="col-xs-12">
                                             <div class="form-group col-xs-6">
                                                 <label>Course</label>
-                                                <select class="form-control">
-                                                    <option>Education</option>
-                                                    <option>Civil Engineering</option>
-                                                    <option>Businees Administration</option>
-                                                    <option>Information Technology Education</option>
-                                                    <option>Accountancy</option>
+                                                <select name="courses" class="form-control">
+                                                    @foreach($courses as $course)
+                                                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group col-xs-6">
@@ -189,32 +174,21 @@
                                         </div>
                                         <div class="col-xs-12">
                                             <div class="form-group col-xs-6">
-                                                <label>Position</label>
-                                                <select class="form-control">
-                                                    <option>President</option>
-                                                    <option>Vice-President</option>
-                                                    <option>Secretary</option>
-                                                    <option>Muse</option>
-                                                    <option>Course Rep.</option>
+                                                <label>Position to Run</label>
+                                                <select name="position" class="form-control">
+
+                                                    @foreach($positions as $position)
+                                                        <option value="{{ $position->id }}">{{ $position->position_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group col-xs-6">
                                                 <label>Party/Group</label>
-                                                <select class="form-control">
-                                                    <option>Party Party!</option>
-                                                    <option>Anak Pawis</option>
-                                                    <option>Walang Forever</option>
-                                                    <option>Elite Party</option>
-                                                    <option>Indepent</option>
+                                                <select name="party" class="form-control">
+                                                    @foreach($parties as $party)
+                                                        <option value="{{ $party->id }}">{{ $party->party_name }}</option>
+                                                    @endforeach
                                                 </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label><i class="fa fa-camera-retro"></i> Candidate Photo</label>
-                                                <input type="file">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Platform:</label>
-                                                <textarea class="form-control" rows="3"></textarea>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>

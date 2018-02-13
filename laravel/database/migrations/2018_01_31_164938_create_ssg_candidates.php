@@ -17,8 +17,11 @@ class CreateSsgCandidates extends Migration
             $table->increments('id');
             $table->string('student_id');
             $table->string('name');
+            $table->binary('image')->nullable();
             $table->integer('course_id')->unsigned()->nullable();
             $table->foreign('course_id')->references('id')->on('courses');
+            $table->integer('position_id')->unsigned()->nullable();
+            $table->foreign('position_id')->references('id')->on('positions');
             $table->integer('ssg_party_id')->unsigned()->nullable();
             $table->foreign('ssg_party_id')->references('id')->on('ssg_parties');
             $table->timestamps();
