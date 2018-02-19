@@ -51,7 +51,7 @@ class AdminController extends Controller
     public function displayAddCandidates()
     {
         $courses = Course::all();
-        $positions = Position::paginate(1);
+        $positions = Position::all();
         $parties = Party::all();
         $partyWithCourse = \DB::table('parties')
                             ->join('courses', 'courses.id', '=', 'parties.course_id')->get();
