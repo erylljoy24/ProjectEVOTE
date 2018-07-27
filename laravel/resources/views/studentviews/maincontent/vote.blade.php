@@ -119,296 +119,34 @@
                 <ul class="list-unstyled">
                     @for($i = 0; $i < count($positions); $i++)
                         <li>
-                            {{ $positions[$i]->position_name }} 
+                            
                         </li>
-                        @foreach($getCandidatesPos as $allCands)
-                            @if($positions[$i]->id == $allCands->position_id)
-                                <input type="radio" name="candidates[{{ $positions[$i]->id }}]" value="{{ $allCands->id }}">{{ $allCands->name }}
-                                <br><br>
-                            @endif
-                        @endforeach
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">{{ $positions[$i]->position_name }} </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  @foreach($getCandidatesPos as $allCands)
+                                    @if($positions[$i]->id == $allCands->position_id)
+                                        <td>
+                                            <input type="radio" name="candidates[{{ $positions[$i]->id }}]" value="{{ $allCands->id }}">{{ $allCands->name }}
+                                        </td>
+                                    @endif
+                                  @endforeach
+                                </tr>
+                            </tbody>
+                        </table>
                     @endfor
-                
-                    {{-- @foreach($positions as $position)
-                        
-                        <select class="form-control">
-                            <option>Reginald</option>
-                            <option>Lebron James</option>
-                        </select>
-                    @endforeach --}}
                 </ul>
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
-            <!-- /.row -->
-            {{-- <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                        </div>
-                        <div class="panel-body">
-                        <div class="form-group">
-                            <h2>TCSC</h2>
-                        </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    President
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="President" id="optionsRadiosInline1" value="option1" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="President" id="optionsRadiosInline2" value="option2" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="President" id="optionsRadiosInline3" value="option3" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Vice-President
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="VP" id="optionsRadiosInline1" value="option1" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="VP" id="optionsRadiosInline2" value="option2" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="VP" id="optionsRadiosInline3" value="option3" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                            <div class="form-group">
-                                <h2 for="disabledSelect">Program</h2>
-                                <select id="disabledSelect" class="form-control">
-                                    <option>Information Technology</option>
-                                    <option>Education</option>
-                                    <option>Engineering</option>
-                                    <option>Business Administration</option>
-                                    <option>Pharmacy</option>
-                                </select>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Program President
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="ProgP" id="optionsRadiosInline1" value="option1" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="ProgP" id="optionsRadiosInline2" value="option2" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="radio" name="ProgP" id="optionsRadiosInline3" value="option3" checked><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Program Representatives<br/><strong>Please select 3 or less</strong>
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="checkbox"><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="checkbox"><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="checkbox"><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="checkbox"><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="checkbox"><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-xs-6 col-sm-6 img1x1">
-                                                            <img src="photo/id_1.png">
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-6">
-                                                            <div class="result-margin">
-                                                                <input type="checkbox"><strong>John Davis</strong> - Liberal Party<br/>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                            <div class="col-lg-12">
-                                    <button type="button" class="btn btn-success btn-lg page-header"><i class="fa fa-check"></i> Submit Vote!</button>
-                                    <button type="reset" class="btn btn-warning btn-lg page-header"">Reset</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="panel-footer">
-                <div class="input-group">
-                    University of South Eastern Philippines
-                </div>
-            </div> --}}
         </div>
         <!-- /#page-wrapper -->
 
