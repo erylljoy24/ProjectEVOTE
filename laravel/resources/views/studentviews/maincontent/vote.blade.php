@@ -123,7 +123,7 @@
                         </li>
                         @foreach($getCandidatesPos as $allCands)
                             @if($positions[$i]->id == $allCands->position_id)
-                                <input type="checkbox" name="candidates[]" value="{{ $allCands->id }}">{{ $allCands->name }}
+                                <input type="radio" name="candidates[{{ $positions[$i]->id }}]" value="{{ $allCands->id }}">{{ $allCands->name }}
                                 <br><br>
                             @endif
                         @endforeach
