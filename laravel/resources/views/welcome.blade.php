@@ -22,11 +22,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    EVOTE
-                </div>
-
-                <div class="links">
-                    <strong>Vote Wisely!</strong>
+                    Student Council Election
                 </div>
             </div>
         </div>
