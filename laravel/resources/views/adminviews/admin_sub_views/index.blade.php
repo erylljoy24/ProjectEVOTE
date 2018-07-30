@@ -73,7 +73,7 @@
                             <a href="admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> Candidate<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Candidate</span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="/admin/add">Add Candidates</a>
@@ -84,7 +84,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> Add TCSC Candidate<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Student Council Candidate</span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="/admin/add/tcscCand">Add Candidates</a>
@@ -95,7 +95,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-group"></i> Party<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-group"></i> Party</span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="/admin/add/parties">Add Party</a>

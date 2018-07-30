@@ -144,7 +144,7 @@
                         </div>
                         <div class="panel-body">
                         <div class="form-group">
-                            <h2>TCSC</h2>
+                            <h2>Student Council</h2>
                         </div>
 
                             @for($i = 0; $i < count($positions); $i++)
